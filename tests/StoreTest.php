@@ -71,10 +71,12 @@
 			$id = 1;
 			$test_store1 = new Store($name, $id);
 			$test_store1->save();
+
 			$name2 = "Blue Shoe";
 			$id2 = 2;
 			$test_store2 = new Store($name2, $id2);
 			$test_store2->save();
+
 			//act
 			$result = Store::getAll();
 			//assert
@@ -82,17 +84,36 @@
 		}
 		function test_deleteAll()
 		{
+			//arrange
 			$name = "Shoe Shoe";
 			$id = 1;
 			$test_store1 = new Store($name, $id);
 			$test_store1->save();
+			//act
 			$name2 = "Blue Shoe";
 			$id2 = 2;
 			$test_store2 = new Store($name2, $id2);
 			$test_store2->save();
 			Store::deleteAll();
 			$result = Store::getAll();
+			//assert
 			$this->assertEquals([], $result);
+		}
+		function test_find()
+		{	//arrange
+			$name = "A Shoe Store";
+			$id = 1;
+			$test_store1 = new Store ($name, $id);
+			$test_store1->save();
+
+			$name2 = "Down by the riverside";
+			$id2 = 2;
+			$test_store2 = new Store ($name2, $id2);
+			$test_store2->save();
+			//act
+			$result = Store::find($test_store2->getId());
+			//assert
+			$this->assertEquals($test_store2, $result);
 		}
 	}
 ?>
