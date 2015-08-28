@@ -47,5 +47,47 @@
         //Assert
         $this->assertEquals(1, $result);
       }
+	  function test_save()
+	{
+		//Arrange
+		$name = "Shoe One";
+		$id = 1;
+		$test_store = new Store($name, $id);
+		//Act
+		$test_store->save();
+		//Assert
+		$result = Store::getAll();
+		$this->assertEquals($result[0], $test_store);
+			}
+	function test_getAll()
+	{
+		//arrange
+		$name = "Shoe Shoe";
+		$id = 1;
+		$test_store1 = new Store($name, $id);
+		$test_store1->save();
+		$name2 = "Blue Shoe";
+		$id2 = 2;
+		$test_store2 = new Store($name2, $id2);
+		$test_store2->save();
+		//act
+		$result = Store::getAll();
+		//assert
+		$this->assertEquals([$test_store1, $test_store2], $result);
+	}
+	function test_deleteAll()
+	{
+		$name = "Shoe Shoe";
+		$id = 1;
+		$test_store1 = new Store($name, $id);
+		$test_store1->save();
+		$name2 = "Blue Shoe";
+		$id2 = 2;
+		$test_store2 = new Store($name2, $id2);
+		$test_store2->save();
+		Store::deleteAll();
+		$result = Store::getAll();
+		$this->assertEquals([], $result);
+	}
 	}
 ?>
