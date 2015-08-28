@@ -72,7 +72,7 @@
 			$GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->getId()};");
 			$GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE store_id = {$this->getId()};");
 		}
-
+	//ADD/GET Brands to Store
 		function addBrand($new_brand)
 		{
 			$GLOBALS['DB']->exec("INSERT INTO brands_stores (stores_id, brands_id)
@@ -94,19 +94,19 @@
 			}
 			return $brands;
 		}
-
-		// function checkBrand($brand_name)
-		// 	{
-		// 		$new_brand = null;
-		// 			if(Brand::findByName($brand_name))
-		// 			{
-		// 			 $new_brand = Brand::findByName($brand_name);
-		// 			}else{
-		// 			 $new_brand = new Brand($brand_name);
-		// 			 $new_brand->save();
-		// 			}
-		// 		return $new_brand;
-		// 	}
+	//Checks for existing brands in Store
+		function checkBrand($brand_name)
+			{
+				$new_brand = null;
+					if(Brand::findByName($brand_name))
+					{
+					 $new_brand = Brand::findByName($brand_name);
+					}else{
+					 $new_brand = new Brand($brand_name);
+					 $new_brand->save();
+					}
+				return $new_brand;
+			}
 
 	}
  ?>

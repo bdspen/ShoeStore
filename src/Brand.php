@@ -59,7 +59,21 @@
             }
         return $found_brand;
         }
+	//END STATIC FUNCTIONS
 
+		static function findByName($search_name)
+		{
+			$found_brand = null;
+			$brands = Brand::getAll();
+			foreach($brands as $brand) {
+			$brand_name = $brand->getName();
+				if ($brand_name == $search_name) {
+				  $found_brand = $brand;
+				}
+			}
+			return $found_brand;
+		}
+	//ADD/GET STORES to Brand
 		function addStore($new_store)
 		{
 			$GLOBALS['DB']->exec("INSERT INTO brands_stores (stores_id, brands_id)
@@ -83,6 +97,5 @@
 			return $stores;
 		}
 
-    //End Static Functions
     }
 ?>
