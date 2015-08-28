@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Shoes</title>
+    </head>
+    <body>
+        <h1>Stores</h1>
+
+        <form action = '/add_store' method='post'>
+
+            <input type='text' id= 'store_name' name='store_name'>
+            <label for='store_name'>Add a Store Name</label>
+
+            <button type= 'submit'>Add Store</button>
+        </form>
+
+        {% if stores is not empty %}
+                <h4>List of stores:</h4>
+                <form action='/delete_all_stores' method='post'>
+                    <button type='submit'>Delete All Stores!</button>
+
+                </form>
+            {% for store in stores %}
+            {% set brands_stores = store.getBrands %}
+
+                <p><a href='/store/{{ store.getId }}/edit'>{{ store.getName }}</a></p>
+
+                {% for brand in brands_stores %}
+                    <ul>
+                        <li>{{brand.getName}}</li>
+                    </ul>
+                {% endfor %}
+                <form action="/store/{{store.getId}}/delete" method='post'>
+                    <input name="_method" type="hidden" value="delete">
+                    <button type='submit'>Delete</button>
+                </form>
+            {% endfor %}
+        {% endif %}
+
+    </body>
+</html>

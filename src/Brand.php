@@ -60,18 +60,29 @@
         return $found_brand;
         }
 
-		// static function findByName($search_name)
-		// {
-		// 	$found_brand = null;
-		// 	$brands = Brand::getAll();
-		// 	foreach($brands as $brand) {
-		// 	$brand_name = $brand->getName();
-		// 		if ($brand_name == $search_name) {
-		// 		  $found_brand = $brand;
-		// 		}
-		// 	}
-		//   return $found_brand;
-		// }
+		function addStore($new_store)
+		{
+			$GLOBALS['DB']->exec("INSERT INTO brands_stores (stores_id, brands_id)
+			VALUES ({$new_store->getId()},
+			 {$this->getId()});");
+		}
+		function getStores()
+		{
+			$found_stores = $GLOBALS['DB']->query("SELECT stores.* FROM brands
+			JOIN brands_stores ON (brands.id = brands_stores.brands_id)
+			JOIN stores ON (brands_stores.stores_id = stores.id)
+			WHERE brands.id = {$this->getId()};");
+
+			$stores = array();
+			foreach($found_stores as $store) {
+				$name = $store['names'];
+				$id = $store['id'];
+				$new_store = new Store($name, $id);
+				array_push($stores, $new_store);
+			}
+			return $stores;
+		}
+
     //End Static Functions
     }
 ?>
