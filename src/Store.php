@@ -29,6 +29,7 @@
 			$this->id = $GLOBALS['DB']->lastInsertId();
 			$GLOBALS['DB']->exec("INSERT INTO copies (store_id) VALUES ({$this->getId()})");
 		}
+	//Static Functions
 		static function deleteAll()
 		{
 			$GLOBALS['DB']->exec("DELETE FROM stores;");
@@ -46,5 +47,20 @@
 		}
 			return $stores;
 		}
+		static function find($search_id)
+		{
+			$found_store = null;
+			$stores = Store::getAll();
+
+			foreach($stores as $store) {
+			$store_id = $store->getId();
+				if ($store_id == $search_id) {
+				  $found_store = $store;
+				}
+			}
+		return $found_store;
+		}
+	//End Static Functions
+		
 	}
  ?>
