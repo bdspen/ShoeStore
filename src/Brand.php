@@ -32,7 +32,7 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM brands;");
-            $GLOBALS['DB']->exec("DELETE FROM brands_stores;");
+            $GLOBALS['DB']->exec("DELETE FROM brands_brands;");
         }
         static function getAll()
         {
@@ -46,5 +46,19 @@
         }
             return $brands;
         }
+        static function find($search_id)
+        {
+            $found_brand = null;
+            $brands = Brand::getAll();
+
+            foreach($brands as $brand) {
+            $brand_id = $brand->getId();
+                if ($brand_id == $search_id) {
+                  $found_brand = $brand;
+                }
+            }
+        return $found_brand;
+        }
+    //End Static Functions
     }
 ?>
