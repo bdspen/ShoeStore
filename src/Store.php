@@ -61,6 +61,18 @@
 		return $found_store;
 		}
 	//End Static Functions
-		
+		function updateName($new_name)
+		{
+			$GLOBALS['DB']->exec("UPDATE stores SET names = '{$new_name}'
+			WHERE id = {$this->getId()};");
+
+			$this->setName($new_name);
+		}
+		function deleteStore()
+		{
+			$GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->getId()};");
+			$GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE store_id = {$this->getId()};");
+		}
+
 	}
  ?>
