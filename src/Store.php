@@ -27,13 +27,12 @@
 			$GLOBALS['DB']->exec("INSERT INTO stores (names)
 			VALUES ('{$this->getName()}');");
 			$this->id = $GLOBALS['DB']->lastInsertId();
-			$GLOBALS['DB']->exec("INSERT INTO copies (store_id) VALUES ({$this->getId()})");
 		}
 	//Static Functions
 		static function deleteAll()
 		{
 			$GLOBALS['DB']->exec("DELETE FROM stores;");
-			$GLOBALS['DB']->exec("DELETE FROM stores_authors;");
+			$GLOBALS['DB']->exec("DELETE FROM brands_stores;");
 		}
 		static function getAll()
 		{
