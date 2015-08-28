@@ -59,6 +59,19 @@
             }
         return $found_brand;
         }
+
+		// static function findByName($search_name)
+		// {
+		// 	$found_brand = null;
+		// 	$brands = Brand::getAll();
+		// 	foreach($brands as $brand) {
+		// 	$brand_name = $brand->getName();
+		// 		if ($brand_name == $search_name) {
+		// 		  $found_brand = $brand;
+		// 		}
+		// 	}
+		//   return $found_brand;
+		// }
     //End Static Functions
     }
 ?>

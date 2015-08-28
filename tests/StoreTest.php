@@ -16,7 +16,8 @@
 	{
 		protected function tearDown()
 		{
-		Store::deleteAll();
+			Store::deleteAll();
+			Brand::deleteAll();
 		}
 
 		function test_getName()
@@ -150,7 +151,7 @@
         function testAddBrand()
         {
             //Arrange
-            $name = "Shoestore";
+            $name = "ShoeStore";
             $id = 1;
             $test_store = new Store ($name, $id);
             $test_store->save();
@@ -165,22 +166,23 @@
             //Assert
             $this->assertEquals([$test_brand], $result);
         }
-        function testGetBrand()
+        function testGetBrands()
         {
-            $name = "Asics";
-            $id3 = 3;
-            $test_brand = new Brand($name, $id3);
-            $test_brand->save();
 
-            $name2 = "Nike";
-            $id2 = 2;
-            $test_brand2 = new Brand ($name2, $id2);
-            $test_brand2->save();
-			
             $name = "ShoeStore";
             $id = 1;
             $test_store = new Store ($name, $id);
             $test_store->save();
+
+			$name = "Asics";
+			$id3 = 3;
+			$test_brand = new Brand($name, $id3);
+			$test_brand->save();
+
+			$name2 = "Nike";
+			$id2 = 2;
+			$test_brand2 = new Brand ($name2, $id2);
+			$test_brand2->save();
             //Act
             $test_store->addBrand($test_brand);
             $test_store->addBrand($test_brand2);
