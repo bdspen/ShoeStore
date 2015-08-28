@@ -26,7 +26,7 @@
 
                 {% for brand in brands_stores %}
                     <ul>
-                        <li>{{brand.getName}}</li>
+                        <li><a href='/brand/{{ brand.getId }}/edit'>{{brand.getName}}</a></li>
                     </ul>
                 {% endfor %}
                 <form action="/store/{{store.getId}}/delete" method='post'>
