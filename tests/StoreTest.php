@@ -115,5 +115,34 @@
 			//assert
 			$this->assertEquals($test_store2, $result);
 		}
+		function testUpdateName()
+		{
+			//arrange
+			$name = "Store1";
+			$id = 1;
+			$test_store = new Store($name, $id);
+			$test_store->save();
+			$new_name = "Store2";
+			//act
+			$test_store->updateName($new_name);
+			//arrange
+			$this->assertEquals("Store2", $test_store->getName());
+		}
+		function testDeleteStore()
+		{
+			//arrange
+			$name = "Store1";
+			$id = 1;
+			$test_store = new Store($name, $id);
+			$test_store->save();
+			$name2 = "Store2";
+			$id2 = 2;
+			$test_store2 = new Store($name2, $id2);
+			$test_store2->save();
+			//act
+			$test_store->deleteStore();
+			//assert
+			$this->assertEquals([$test_store2], Store::getAll());
+		}
 	}
 ?>
