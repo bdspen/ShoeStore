@@ -1,23 +1,30 @@
 <html>
+
     <body>
+
         <h1>You are editing {{ brand.getName }}</h1>
 
-        {% set brands_stores = brand.getStores %}
-        <h3>Brands:</h3>
-        {% for brand in brands_stores %}
-            <ul>
-                <li>{{ brand.getName }}</li>
-            </ul>
-            {% endfor %}
+
+
+        {% for store in stores %}
+            <li>{{ store.getName }}</li>
+        {% endfor %}
+
             <form action="/brand/{{ brand.getId }}" method="post">
                 <input name="_method" type="hidden" value="patch">
+                <input name= "brand_id" id="brand_id" type="hidden" value="{{ brand.getId }}">
                 <label for="name">New Name</label>
                 <input id="name" name="name" type="text">
 
-                <label for="add_store">Add Store</label>
+                <label for="add_store">Add Additional Store</label>
                 <input id="add_store" name="add_store" type="text">
 
                 <button type="submit">Update</button>
             </form>
+            <a href="/">Home</a>
+            <!-- <form action="/brand/{{brand.getId}}/delete" method='post'>
+                <input name="_method" type="hidden" value="delete">
+                <button type='submit'>Delete</button>
+            </form> -->
     </body>
 </html>

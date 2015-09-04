@@ -57,9 +57,9 @@
                   $found_brand = $brand;
                 }
             }
-        return $found_brand;
-        }
-	//END STATIC FUNCTIONS
+        	return $found_brand;
+		}
+
 
 		static function findByName($search_name)
 		{
@@ -73,6 +73,7 @@
 			}
 			return $found_brand;
 		}
+	//END STATIC FUNCTIONS
 	//ADD/GET STORES to Brand
 		function addStore($new_store)
 		{
@@ -96,6 +97,18 @@
 			}
 			return $stores;
 		}
+		function checkStore($store_namestore)
+			{
+				$new_store = null;
+					if(Store::findByName($store_name))
+					{
+					 $new_store = Store::findByName($store_name);
+					}else{
+					 $new_store = new Store($store_name);
+					 $new_store->save();
+					}
+				return $new_store;
+			}
 
     }
 ?>

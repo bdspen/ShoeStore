@@ -22,11 +22,11 @@
             {% for store in stores %}
             {% set brands_stores = store.getBrands %}
 
-                <p><a href='/store/{{ store.getId }}/edit'>{{ store.getName }}</a></p>
+                <p><a href='/store/{{ store.getId }}/edit'>Store: {{ store.getName }}</a></p>
 
                 {% for brand in brands_stores %}
                     <ul>
-                        <li><a href='/brand/{{ brand.getId }}/edit'>{{brand.getName}}</a></li>
+                        <li><a href='/brand/{{ brand.getId }}/edit'>Brand: {{brand.getName}}</a></li>
                     </ul>
                 {% endfor %}
                 <form action="/store/{{store.getId}}/delete" method='post'>

@@ -59,6 +59,18 @@
 			}
 			return $found_store;
 		}
+		static function findByName($search_name)
+		{
+			$found_store = null;
+			$stores = Store::getAll();
+			foreach($stores as $store) {
+			$store_name = $store->getName();
+				if ($store_name == $search_name) {
+				  $found_store = $store;
+				}
+			}
+			return $found_store;
+		}
 	//End Static Functions
 		function updateName($new_name)
 		{
