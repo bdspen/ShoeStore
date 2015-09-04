@@ -60,6 +60,13 @@
     return $app['twig']->render('index.html.twig', array('stores' => Store::getAll(),
     'brands' => Brand::getAll()));
     });
+    //DELETE INDIVIDUAL STORE
+    $app->delete("/store/{id}/delete", function($id) use ($app) {
+    $store = Store::find($id);
+    $store->deleteStore();
+    return $app['twig']->render('index.html.twig', array('stores' => Store::getAll(),
+    'brands' => Brand::getAll()));
+    });
 
     //UPDATE
     $app->patch("/store/{id}", function($id) use ($app) {
