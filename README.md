@@ -2,11 +2,13 @@
 # Shoe Store
 
 ##### Allows a user to organise shoe stores and brands of shoes that they carry.
-#### 2015/08/28
+#### 2015/09/03
 
 #### By Benjamin Spenard
 
 ## Description
+**the app works except when you create or add a new store from the brand
+edit page the name of the store won't display on the page**
 
 This app allows a user to create a list of shoe stores and a list of brands that
 the shoe store carries within each store. You can also see the stores that carry
