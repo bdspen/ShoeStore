@@ -92,6 +92,7 @@
         if ( !empty($_POST['add_store']) )
         {
             $store_name = $_POST['add_store'];
+            $store = Store::findByName($store_name);
             $brand->addStore($brand->checkStore($store_name));
         }
         return $app['twig']->render('index.html.twig', array('stores' => Store::getAll(),
