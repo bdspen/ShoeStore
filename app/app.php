@@ -8,7 +8,7 @@
     $app = new Silex\Application();
     $app['debug'] = true;
 
-    $server = 'mysql:host=localhost:8889;dbname=shoes';
+    $server = 'mysql:host=localhost;dbname=shoes';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -23,6 +23,12 @@
     //HOME
     $app->get("/", function() use ($app) {
         return $app['twig']->render('index.html.twig', array('stores' =>
+        Store::getAll(), 'brands' => Brand::getAll()));
+    });
+
+    //ALL BRANDS
+    $app->get("/brands", function() use ($app) {
+        return $app['twig']->render('brands.html.twig', array('stores' =>
         Store::getAll(), 'brands' => Brand::getAll()));
     });
 

@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Shoes</title>
+    </head>
+    <body>
+        <h1>Brands</h1>
+        <h2><a href="/">Click to view all Stores</a></h2>
+
+
+        {% if brands is not empty %}
+                <h4>List of brands:</h4>
+                <form action='/delete_all' method='post'>
+                    <button type='submit'>Delete All Brands!</button>
+
+                </form>
+            {% for brand in brands %}
+            {% set brands_stores = brand.getStores %}
+
+                <p><a href='/brand/{{ brand.getId }}/edit'>Brand: {{ brand.getName }}</a></p>
+                {% for store in brands_stores %}
+                    <ul>
+                        <li><a href='/store/{{ store.getId }}/edit'>Store: {{store.getName}}</a></li>
+                    </ul>
+                {% endfor %}
+                <form action="/brand/{{brand.getId}}/delete" method='post'>
+                    <input name="_method" type="hidden" value="delete">
+                    <button type='submit'>Delete</button>
+                </form>
+            {% endfor %}
+        {% endif %}
+
+        <a href="/">Home</a>
+
+    </body>
+</html>
