@@ -2,7 +2,7 @@
 
     <body>
 
-        <h1>You are editing {{ store.getName }}</h1>
+        <h1>{{ store.getName }}</h1>
 
 
         {% set brands_stores = store.getBrands %}
@@ -21,12 +21,8 @@
             {% endfor %}
             <form action="/store/{{ store.getId }}" method="post">
                 <input name="_method" type="hidden" value="patch">
-                <label for="name">New Name</label>
+                <label for="name">Change Name</label>
                 <input id="name" name="name" type="text">
-
-                <select class="" name="">
-
-                </select>
 
                 <label for="add_brand">Add Additional Brand</label>
                 <input id="add_brand" name="add_brand" type="text">
